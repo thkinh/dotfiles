@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/thkinh/dotfiles/config/docker/.docker'
+let g:netrw_dirhist_6='/home/thkinh/go/pkg/sumdb'
+let g:netrw_dirhist_5='/home/thkinh/HocTap'
+let g:netrw_dirhist_4='/home/thkinh/.vim'
+let g:netrw_dirhist_3='/home/thkinh/backend'
+let g:netrw_dirhist_2='/home/thkinh/HocTap/AP'
+let g:netrw_dirhist_1='/home/thkinh/.docker'
