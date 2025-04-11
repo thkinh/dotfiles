@@ -1,19 +1,10 @@
-#My dotfiles
-
-
-##Installation
-
-Clone the repository
+# My dotfiles 
+---
+## Installation
 ```bash
-git clone https://github.com/thkinh/dotfiles.git 
-``` 
-Run the script
+git clone https://github.com/thkinh/dotfiles.git
+```
 ```bash
 cd dotfiles
 ./install.sh
 ```
-
-
-
-
-
