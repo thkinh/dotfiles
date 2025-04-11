@@ -13,9 +13,6 @@ autocmd VimEnter * hi VimwikiList ctermfg=magenta guifg=magenta
 " Turn off vim bell sound
 autocmd VimEnter * set vb t_vb=
 
-
-
-
 call plug#begin()
 " List your plugins here
 Plug 'tpope/vim-sensible'
@@ -23,6 +20,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'ghifarit53/tokyonight-vim'
 call plug#end()
+
 set number
 set relativenumber
 " Set shift width to 4 spaces.

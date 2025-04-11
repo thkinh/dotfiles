@@ -1,5 +1,5 @@
-# Ignore vim plugins
-config/vim/plugged/
+# Ignore vim plugins 
+vim/plugged/
 
 # Ignore temporary and swap files
 *.swp
@@ -7,13 +7,13 @@ config/vim/plugged/
 *~
 
 # Ignore ssh private keys
-config/ssh/id_*
+ssh/id_*
 
-# Ignore history files if you want
-config/bash/.bash_history
-config/vim/.viminfo
+# Ignore history files if you want 
+bash/.bash_history 
+vim/.viminfo
 
-# Ignore dotnet/gradle build outputs
-config/gradle/caches/
-config/gradle/wrapper/
-config/system/dotnet/
+# Ignore dotnet/gradle build outputs 
+gradle/caches/ 
+gradle/wrapper/ 
+system/dotnet/
