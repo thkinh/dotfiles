@@ -1,0 +1,121 @@
+{
+  "position": "top",
+  "margin-top": 5,
+  "modules-left": ["cpu","temperature","memory", "network","tray"],
+  "modules-center": ["hyprland/workspaces", "custom/media"],
+  "modules-right": ["clock", "custom/weather", "pulseaudio", "backlight","custom/ibus"],
+  "tray": {
+    "format": " {}",  // Font Awesome Bluetooth icon
+    "icon-size": 20,
+    "spacing": 10
+  },
+  "custom/ibus": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/ibus_toggle.sh",
+    "on-click": "~/.config/waybar/scripts/ibus_toggle.sh toggle",
+    "return-type": "json",
+    "tooltip": true,
+    "signal": 9
+  },
+  "custom/pacman": {
+    "format": " {}   ",
+    "interval": "once",
+    "exec": "checkupdates | wc -l",
+    "on-click": "update-system",
+    "signal": 8
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["󱃃", "󰔏", "󱃂"]
+  },
+  "cpu": {
+    "format": "　{usage}%"
+  },
+  "memory": {
+    "format": "　{}%"
+  },
+  "backlight": {
+    "format": "　{percent}%",
+    "format-icons": ["", ""],
+    "on-click": "$HOME/.config/hypr/scripts/cycle_wall.sh" 
+  },
+  "custom/media": {
+    "format": "{icon}{}",
+    "escape": true,
+    "return-type": "json",
+    "max-length": 40,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl stop",
+    "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous",
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources/custom_modules folder
+  },
+
+  "battery": {
+    "format": "{icon}  {capacity}%",
+    "format-charging": "󰂄  {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  },
+
+  "clock": {
+    "format": "󰥔   {:%I:%M %p}",
+    "format-alt": "󰥔   {:%a, %d. %b  %I:%M %p}",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-bluetooth": "󰂱  {volume}%",
+    "format-muted": "󰖁",
+    "scroll-step": 1,
+    "on-click": "pavucontrol",
+    "ignored-sinks": ["Easy Effects Sink"],
+    "format-icons": {
+      "headphone": "  ",
+      "hands-free": " ",
+      "headset": "󰋎 ",
+      "phone": " ",
+      "portable": " ",
+      "car": "",
+      "default": ["󰖀", "󰕾"]
+    }
+  },
+
+  "network": {
+    "interface": "wlan0",
+    "format": "{ifname}",
+    "format-wifi": "{icon}   {essid}",
+    "format-ethernet": "󰈀   {ipaddr}/{cidr}",
+    "format-disconnected": "󰤭   disconnected",
+    "max-length": 50,
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "urgent": "󰀨",
+      "default": "",
+      "active": ""
+    },
+
+    "sort-by-number": true
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon}   {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"]
+  },
+
+  "custom/weather": {
+    "exec": "${HOME}/.config/waybar/scripts/get_weather.sh Ho_Chi_Minh",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "interval": 3600
+  }
+}

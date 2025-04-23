@@ -1,7 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -75,8 +74,8 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
+    alias ls='ls -l --color=auto'
+    alias dir='dir -l --color=auto'
     alias vdir='vdir --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -89,10 +88,44 @@ fi
 # some more ls aliases
 #alias ll='ls -l'
 alias ll='ls -lA --group-directories-first'
+alias lsd='ls -d .*'
+alias arch='fastfetch -c ~/.config/fastfetch/config.jsonc'
 #alias la='ls -A'
 #alias l='ls -CF'
+alias vi='vim'
 alias cls='clear'
 alias rmdir='rm -rf'
+alias cd='cd_func'
+cd_func() {
+  builtin cd "$@" && ls 
+}
+# Check for the distribution and set aliases accordingly
+if [ -f /etc/os-release ]; then
+    # Extract distribution name from os-release file
+    DISTRO=$(grep -w ID /etc/os-release | cut -d '=' -f2 | tr -d '"')
+
+    case "$DISTRO" in
+        "debian"*)
+            # For Debian-based distros
+            alias s='apt-cache search'
+            ;;
+        "ubuntu"*)
+            # For Ubuntu-based distros
+            alias s='apt search'
+            ;;
+        "arch"*)
+            # For Arch-based distros
+            alias s='yay -Ss'
+            ;;
+        *)
+            # Default case if the distro is not recognized
+            alias s='echo "Unknown distribution"'
+            ;;
+    esac
+else
+    echo "OS distribution not found."
+fi
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -101,6 +134,7 @@ alias rmdir='rm -rf'
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+export PATH=$PATH:$(go env GOPATH)/bin
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

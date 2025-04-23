@@ -1,0 +1,10 @@
+[Default Applications]
+inode/directory=thunar.desktop
+x-directory/normal=thunar.desktop
+application/pdf=org.pwmt.zathura.desktop
+application/pptx=org.pwmt.zathura.desktop
+image/png=sxiv.desktop;mupdf.desktop;
+image/jpeg=sxiv.desktop;
+
+[Added Associations]
+application/vnd.openxmlformats-officedocument.presentationml.presentation=thunar.desktop;firefox.desktop;mupdf.desktop;
