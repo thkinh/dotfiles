@@ -12,7 +12,7 @@ ssh/id_*
 # Ignore history files if you want 
 bash/.bash_history 
 vim/.viminfo
-vim/.vimnetrwhist
+vim/.netrwhist
 # Ignore dotnet/gradle build outputs 
 gradle/caches/ 
 gradle/wrapper/ 
