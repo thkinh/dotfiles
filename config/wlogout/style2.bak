@@ -1,30 +1,26 @@
-@import "/home/thkinh/.cache/wal/colors-waybar.css";
-
-* {
-	background-image: none;
-	box-shadow: none;
-}
+@import url("/home/thkinh/.cache/wal/colors-waybar.css");
 
 window {
-	background-color: rgba(0, 0, 0, 0.85);
-}
-button {
-    font-size: 20px;
-    background-size: 25%;
-    padding-bottom: 120px;
-    margin: 5px;
-    border-radius: 12px;
+    color: #cdd6f4;
     background-color: @background;
-    border: 2px solid @color4;
-    color: @foreground;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 20%;
 }
 
-button:focus, button:active, button:hover {
-	background-color: @color4;
-	outline-style: none;
+button {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    border-style: solid;
+    /*color: #fbf1c7; */
+    color: @color14; 
+    text-shadow: none;
+    border-radius: 2px;
+    background-color: @background;
+    transition-duration: 0.5s
+}
+
+
+button:hover {
+    background-color: @color11 ;
 }
 
 #lock {
