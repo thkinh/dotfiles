@@ -32,3 +32,10 @@
     "text" : "Suspend",
     "keybind" : "u"
 }
+
+{
+    "label" : "hyprland",
+    "action" : "hyprctl reload",
+    "text" : "Hyprland",
+    "keybind" : "r"
+}
