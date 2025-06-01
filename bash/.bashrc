@@ -6,7 +6,6 @@ case $- in
     *i*) ;;
       *) return;;
 esac
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -96,6 +95,7 @@ alias vi='vim'
 alias cls='clear'
 alias rmdir='rm -rf'
 alias cd='cd_func'
+alias translate='~/BedRoom/_Scripts/wtf.sh'
 cd_func() {
   builtin cd "$@" && ls 
 }
@@ -135,7 +135,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 export PATH=$PATH:$(go env GOPATH)/bin
-
+export PS1='\[\e[0;36m\e[0;35m[\]\u@\h \W]\$ \[\e[0m\]'
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -147,3 +147,8 @@ if ! shopt -oq posix; then
   fi
 fi 
 bind 'set bell-style none'
+
+
+# >>> conda initialize >>>
+eval "$(/home/thkinh/miniforge3/bin/conda shell.bash hook)"
+# <<< conda initialize <<<

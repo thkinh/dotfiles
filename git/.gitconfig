@@ -3,3 +3,10 @@
 	name = thkinh
 [init]
 	defaultBranch = main
+[alias]
+  a = add
+  b = checkout
+  c = commit -m
+	l = log
+	ss = status
+
