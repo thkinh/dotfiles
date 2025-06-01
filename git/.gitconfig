@@ -5,8 +5,9 @@
 	defaultBranch = main
 [alias]
   a = add
-  b = checkout
-  c = commit -m
+  b = branch 
+	c = commit -m
+	ch = checkout
 	l = log
 	ss = status
 
