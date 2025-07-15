@@ -21,6 +21,7 @@ CONFIG_DIRS=(
   "wofi"
   "wlogout"
   "nwg-look"
+  "ibus-bamboo"
 )
 
 #mimeapp.list
