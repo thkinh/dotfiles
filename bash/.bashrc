@@ -95,10 +95,32 @@ alias vi='vim'
 alias cls='clear'
 alias rmdir='rm -rf'
 alias cd='cd_func'
+alias rm='trash-put'
 alias translate='~/BedRoom/_Scripts/wtf.sh'
+alias open='xdg-open'
+alias yank='yank_func'
+alias tohere='tohere_func'
 cd_func() {
   builtin cd "$@" && ls 
 }
+
+yank_func() {
+    count=0
+    mkdir -p ~/.cache/self_created/yanked_files
+    for file in "$@"; do
+        cp "$file" ~/.cache/self_created/yanked_files/
+        ((count++))
+        echo "Yanked $count: $file"
+    done
+}
+
+tohere_func() {
+    for file in ~/.cache/self_created/yanked_files/*; do
+        mv "$file" .
+        echo "Moved $file to $(pwd)"
+    done
+}
+
 # Check for the distribution and set aliases accordingly
 if [ -f /etc/os-release ]; then
     # Extract distribution name from os-release file
@@ -135,7 +157,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 export PATH=$PATH:$(go env GOPATH)/bin
-export PS1='\[\e[0;36m\e[0;35m[\]\u@\h \W]\$ \[\e[0m\]'
+PS1='\[\e[0;32m\]\u@\h \[\e[0;36m\]\W \[\e[0m\]\$ '
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
