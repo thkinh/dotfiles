@@ -83,7 +83,6 @@ fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 # some more ls aliases
 #alias ll='ls -l'
 alias ll='ls -lA --group-directories-first'
@@ -100,6 +99,7 @@ alias translate='~/BedRoom/_Scripts/wtf.sh'
 alias open='xdg-open'
 alias yank='yank_func'
 alias tohere='tohere_func'
+
 cd_func() {
   builtin cd "$@" && ls 
 }

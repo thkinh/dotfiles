@@ -9,7 +9,6 @@ autocmd VimEnter * hi VimwikiHeader3 ctermfg=green guifg=green
 autocmd VimEnter * hi VimwikiHeader4 ctermfg=cyan guifg=cyan
 autocmd VimEnter * hi VimwikiLink ctermfg=cyan guifg=cyan gui=underline term=underline
 autocmd VimEnter * hi VimwikiList ctermfg=magenta guifg=magenta 
-
 " Turn off vim bell sound
 autocmd VimEnter * set vb t_vb=
 
@@ -17,20 +16,25 @@ call plug#begin()
 " List your plugins here
 Plug 'tpope/vim-sensible'
 Plug 'vimwiki/vimwiki'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'ghifarit53/tokyonight-vim'
+Plug 'sheerun/vim-polyglot'
+
+"LSP stuffs
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/emmet-vim' "html
+Plug 'alvan/vim-closetag'
+
+Plug 'itmammoth/doorboy.vim' "auto brackets
+"Themes
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
+Plug 'arzg/vim-colors-xcode', {'as': 'xcolor', 'branch': 'master'}
 call plug#end()
 
-"LSP"
-if executable('pyright-langserver')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyright',
-        \ 'cmd': {server_info->['pyright-langserver', '--stdio']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
+"LSP
 if executable('clangd')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'clangd',
@@ -38,6 +42,30 @@ if executable('clangd')
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
         \ })
 endif
+
+if executable('pyright-langserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyright',
+        \ 'cmd': {server_info->['pyright-langserver', '--stdio']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
+if executable('vim-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'vim-language-server',
+        \ 'cmd': {server_info->['vim-language-server']},
+        \ })
+endif
+
+if executable('typescript-language-server')
+  au User lsp_setup call lsp#register_server({
+      \ 'name': 'typescript-language-server',
+      \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
+      \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx'],
+      \ })
+endif
+
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -53,10 +81,10 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
-    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+    nnoremap <buffer> <expr><c-f> lsp#scroll(+1)
+    nnoremap <buffer> <expr><c-d> lsp#scroll(-1)
 
-    let g:lsp_format_sync_timeout = 1000
+    let g:lsp_format_sync_timeout = 500
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
     
     " refer to doc to add more commands
@@ -70,14 +98,12 @@ augroup lsp_install
     let g:lsp_diagnostics_virtual_text_align = 'right'
 augroup END
 
-
-set number
+set number 
 set relativenumber
 " Set shift width to 4 spaces.
 set shiftwidth=2
 
 " Set map
-inoremap <C-H> <C-W><Backspace> 
 command! Nu set relativenumber! | set nu!
 
 " Set tab width to 4 columns.
@@ -88,6 +114,7 @@ set expandtab
 
 " Do not save backup files.
 set nobackup
+set hidden
 
 " Do not let cursor scroll below or above N number of lines when scrolling.
 set scrolloff=10
@@ -112,7 +139,7 @@ set showmode
 set showmatch
 
 " Use highlighting when doing a search.
-set hlsearch
+" set hlsearch
 
 " Set the commands to save in history default number is 20.
 set history=1000
@@ -125,7 +152,58 @@ set si
 set wrap
 set linebreak
 
-colorscheme dracula
+"INSERT MODE
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+inoremap <C-K>  <Esc><S-O>
+inoremap <C-L> <Esc>A
+inoremap <C-H> <Esc>H
+
+" ASYNC COMPLETION
+" allow modifying the completeopt variable, or it will
+" be overridden all the time
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menuone,noinsert,preview
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Close tag
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+let g:closetag_emptyTags_caseSensitive = 1
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ 'typescriptreact': 'jsxRegion,tsxRegion',
+    \ 'javascriptreact': 'jsxRegion',
+    \ }
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+let g:closetag_enable_react_fragment = 0
+"End of Close tag
+
+colorscheme xcodewwdc
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
