@@ -1,11 +1,11 @@
 {
   "position": "top",
-  "margin-top": 5,
-  "modules-left": ["cpu","temperature","memory", "network","tray"],
+  "margin-top": 3,
+  "modules-left": ["battery","cpu","temperature","memory", "network","tray"], 
   "modules-center": ["hyprland/workspaces", "custom/media"],
-  "modules-right": ["clock", "custom/weather", "pulseaudio", "backlight","custom/ibus"],
+  "modules-right": ["clock", "custom/weather", "pulseaudio", "backlight"],
   "tray": {
-    "format": " {}",  // Font Awesome Bluetooth icon
+    "format": "{}",  // Font Awesome Bluetooth icon
     "icon-size": 20,
     "spacing": 10
   },
@@ -30,10 +30,10 @@
     "format-icons": ["󱃃", "󰔏", "󱃂"]
   },
   "cpu": {
-    "format": "　{usage}%"
+    "format": " {usage}%"
   },
   "memory": {
-    "format": "　{}%"
+    "format": "   {}%"
   },
   "backlight": {
     "format": "　{percent}%",
@@ -41,15 +41,16 @@
     "on-click": "$HOME/.config/hypr/scripts/cycle_wall.sh" 
   },
   "custom/media": {
-    "format": "{icon}{}",
+    "format": "{}",
     "escape": true,
     "return-type": "json",
-    "max-length": 40,
+    "max-length": 8,
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl stop",
     "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous",
+    "tool-tip": true,
     "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources/custom_modules folder
   },
 
@@ -62,7 +63,7 @@
   "clock": {
     "format": "󰥔   {:%I:%M %p}",
     "format-alt": "󰥔   {:%a, %d. %b  %I:%M %p}",
-    "tooltip": false
+    "tooltip": true
   },
 
   "pulseaudio": {
