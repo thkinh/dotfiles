@@ -13,7 +13,6 @@ autocmd VimEnter * hi VimwikiList ctermfg=magenta guifg=magenta
 autocmd VimEnter * set vb t_vb=
 
 call plug#begin()
-" List your plugins here
 Plug 'tpope/vim-sensible'
 Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
@@ -28,10 +27,12 @@ Plug 'alvan/vim-closetag'
 
 Plug 'itmammoth/doorboy.vim' "auto brackets
 "Themes
+Plug 'morhetz/gruvbox'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 Plug 'arzg/vim-colors-xcode', {'as': 'xcolor', 'branch': 'master'}
+Plug 'sainnhe/everforest'
 call plug#end()
 
 "LSP
@@ -157,8 +158,6 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 inoremap <C-K>  <Esc><S-O>
-inoremap <C-L> <Esc>A
-inoremap <C-H> <Esc>H
 
 " ASYNC COMPLETION
 " allow modifying the completeopt variable, or it will
@@ -203,7 +202,20 @@ let g:closetag_close_shortcut = '<leader>>'
 let g:closetag_enable_react_fragment = 0
 "End of Close tag
 
-colorscheme xcodewwdc
+"colorscheme xcodewwdc
+"
+"
+"========================="
+"Setup cho cai gruvbox
+if has('termguicolors')
+          set termguicolors
+endif
+set background=dark
+let g:everforest_background = 'hard'
+colorscheme gruvbox
+"========================="
+"
+"
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
