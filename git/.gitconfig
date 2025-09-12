@@ -11,3 +11,5 @@
 	l = log
 	ss = status
 
+[core]
+	editor = vim
