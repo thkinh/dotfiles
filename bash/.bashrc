@@ -14,8 +14,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=3000
+HISTFILESIZE=4000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -95,10 +95,11 @@ alias cls='clear'
 alias rmdir='rm -rf'
 alias cd='cd_func'
 alias rm='trash-put'
-alias translate='~/BedRoom/_Scripts/wtf.sh'
+alias translate='~/dotfiles/bash/scripts/wtf.sh'
 alias open='xdg-open'
 alias yank='yank_func'
 alias tohere='tohere_func'
+alias dev='~/dotfiles/bash/scripts/dev.sh'
 
 cd_func() {
   builtin cd "$@" && ls 
@@ -120,6 +121,7 @@ tohere_func() {
         echo "Moved $file to $(pwd)"
     done
 }
+
 
 # Check for the distribution and set aliases accordingly
 if [ -f /etc/os-release ]; then
@@ -156,7 +158,6 @@ fi
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-export PATH=$PATH:$(go env GOPATH)/bin
 PS1='\[\e[0;32m\]\u@\h \[\e[0;36m\]\W \[\e[0m\]\$ '
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -171,10 +172,15 @@ fi
 bind 'set bell-style none'
 
 
+export PATH=$PATH:$(go env GOPATH)/bin
 # >>> conda initialize >>>
 eval "$(/home/thkinh/miniforge3/bin/conda shell.bash hook)"
 # <<< conda initialize <<<
 eval "$(direnv hook bash)"
+
+# ruby init
+eval "$(rbenv init -)"
+
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/thkinh/repos/google-cloud-sdk/path.bash.inc' ]; then . '/home/thkinh/repos/google-cloud-sdk/path.bash.inc'; fi

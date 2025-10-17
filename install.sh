@@ -19,6 +19,6 @@ ln -sf "$DOTFILES_DIR/vim" "$HOME/.vim"
 ln -sf "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig"
 
 #Tmux
-ln -sf "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
+ln -sf "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.config/tmux/tmux.conf"
 
 echo "Done! You may want to reload your shell or restart the system."
