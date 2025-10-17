@@ -2,16 +2,6 @@ set nocompatible
 filetype plugin on
 syntax on
 
-" VimWiki configs
-autocmd VimEnter * hi VimwikiHeader1 ctermfg=red guifg=red
-autocmd VimEnter * hi VimwikiHeader2 ctermfg=yellow guifg=yellow
-autocmd VimEnter * hi VimwikiHeader3 ctermfg=green guifg=green
-autocmd VimEnter * hi VimwikiHeader4 ctermfg=cyan guifg=cyan
-autocmd VimEnter * hi VimwikiLink ctermfg=cyan guifg=cyan gui=underline term=underline
-autocmd VimEnter * hi VimwikiList ctermfg=magenta guifg=magenta 
-" Turn off vim bell sound
-autocmd VimEnter * set vb t_vb=
-
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'vimwiki/vimwiki'
@@ -25,6 +15,9 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/emmet-vim' "html
 Plug 'alvan/vim-closetag'
 
+"Copilot
+Plug 'github/copilot.vim'
+
 Plug 'itmammoth/doorboy.vim' "auto brackets
 "Themes
 Plug 'morhetz/gruvbox'
@@ -35,189 +28,30 @@ Plug 'arzg/vim-colors-xcode', {'as': 'xcolor', 'branch': 'master'}
 Plug 'sainnhe/everforest'
 call plug#end()
 
-"LSP
-if executable('clangd')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd']},
-        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ })
-endif
-
-if executable('pyright-langserver')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyright',
-        \ 'cmd': {server_info->['pyright-langserver', '--stdio']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
-
-if executable('vim-language-server')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'vim-language-server',
-        \ 'cmd': {server_info->['vim-language-server']},
-        \ })
-endif
-
-if executable('typescript-language-server')
-  au User lsp_setup call lsp#register_server({
-      \ 'name': 'typescript-language-server',
-      \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
-      \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx'],
-      \ })
-endif
-
-
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-    nnoremap <buffer> <expr><c-f> lsp#scroll(+1)
-    nnoremap <buffer> <expr><c-d> lsp#scroll(-1)
-
-    let g:lsp_format_sync_timeout = 500
-    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-    
-    " refer to doc to add more commands
-endfunction
-
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-
-    let g:lsp_diagnostics_virtual_text_align = 'right'
-augroup END
-
-set number 
-set relativenumber
-" Set shift width to 4 spaces.
-set shiftwidth=2
-
-" Set map
-command! Nu set relativenumber! | set nu!
-
-" Set tab width to 4 columns.
-set tabstop=2
-
-" Use space characters instead of tabs.
-set expandtab
-
-" Do not save backup files.
-set nobackup
-set hidden
-
-" Do not let cursor scroll below or above N number of lines when scrolling.
-set scrolloff=10
-
-" While searching though a file incrementally highlight matching characters as you type.
-set incsearch
-
-" Ignore capital letters during search.
-set ignorecase
-
-" Override the ignorecase option if searching for capital letters.
-" This will allow you to search specifically for capital letters.
-set smartcase
-
-" Show partial command you type in the last line of the screen.
-set showcmd
-
-" Show the mode you are on the last line.
-set showmode
-
-" Show matching words during a search.
-set showmatch
-
-" Use highlighting when doing a search.
-" set hlsearch
-
-" Set the commands to save in history default number is 20.
-set history=1000
-
-set novisualbell
-syntax enable
-
-set ai
-set si
-set wrap
-set linebreak
-
-"INSERT MODE
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-inoremap <C-K>  <Esc><S-O>
-
-" ASYNC COMPLETION
-" allow modifying the completeopt variable, or it will
-" be overridden all the time
-let g:asyncomplete_auto_completeopt = 0
-set completeopt=menuone,noinsert,preview
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" Close tag
-" filenames like *.xml, *.html, *.xhtml, ...
-" These are the file extensions where this plugin is enabled.
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
-" filenames like *.xml, *.xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-" filetypes like xml, html, xhtml, ...
-" These are the file types where this plugin is enabled.
-"
-let g:closetag_filetypes = 'html,xhtml,phtml'
-" filetypes like xml, xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
-" integer value [0|1]
-" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-let g:closetag_emptyTags_caseSensitive = 1
-" dict
-" Disables auto-close if not in a "valid" region (based on filetype)
-"
-let g:closetag_regions = {
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx': 'jsxRegion',
-    \ 'typescriptreact': 'jsxRegion,tsxRegion',
-    \ 'javascriptreact': 'jsxRegion',
-    \ }
-" Shortcut for closing tags, default is '>'
-"
-let g:closetag_shortcut = '>'
-" Add > at current position without closing the current tag, default is ''
-"
-let g:closetag_close_shortcut = '<leader>>'
-let g:closetag_enable_react_fragment = 0
-"End of Close tag
-
-"colorscheme xcodewwdc
-"
-"
-"========================="
-"Setup cho cai gruvbox
+" Set themes
 if has('termguicolors')
           set termguicolors
 endif
 set background=dark
 let g:everforest_background = 'hard'
-colorscheme gruvbox
-"========================="
-"
-"
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+colorscheme dracula
+" ==========================
+
+" General Settings
+source ~/.vim/plugins/general_settings.vim
+" =========================
+
+" Key Mappings
+source ~/.vim/plugins/key_mappings.vim
+" =========================
+
+" VimWiki configs
+source ~/.vim/plugins/vimwiki_config.vim
+" =========================
+
+"LSP configs
+source ~/.vim/plugins/lsp_config.vim
+
+" Close tag
+source ~/.vim/plugins/closetag.vim
+" =========================
