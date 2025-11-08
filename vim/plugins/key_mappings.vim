@@ -4,7 +4,7 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>1 :!<CR>
 nnoremap <leader><leader> :browse oldfiles <CR>
-
+nnoremap <Space> }
 
 "INSERT MODE
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"

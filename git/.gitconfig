@@ -9,6 +9,7 @@
 	c = commit -m
 	ch = checkout
 	l = log
+	l1 = log --all --decorate --oneline --graph
 	ss = status
 
 [core]

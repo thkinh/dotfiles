@@ -49,8 +49,10 @@ syntax enable
 
 set ai
 set si
-set wrap
+set nowrap
 set linebreak
+set clipboard=unnamedplus
+
 
 " Turn off vim bell sound
 autocmd VimEnter * set vb t_vb=
