@@ -1,0 +1,42 @@
+@import url("/home/thkinh/.cache/wal/colors-waybar.css");
+#window {
+    margin: 0px;
+    border: 1px solid @color1;
+    border-radius: 10px;
+    background-color: @background
+}
+
+#input {
+    margin: 5px;
+    border: none;
+    color: @foreground; 
+    background-color: @background
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: @background
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: @color3
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 5px;
+    border: none;
+    color: @color7; /* cor do texto (bege claro) */
+}
+
+#entry:selected {
+    background-color: @color5
+}

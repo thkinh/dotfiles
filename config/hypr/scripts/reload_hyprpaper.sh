@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WALLPAPER_DIR="$HOME/BedRoom/_Collections/Wallpapers"
+WALLPAPER_DIR="$HOME/Pictures/_Collections/Wallpapers"
 HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"  # adjust if needed
 CACHE_FILE="$HOME/.cache/self_created/hyprpaper_wall_list"
 CACHE_INDEX="$HOME/.cache/self_created/hyprpaper_wall_index"

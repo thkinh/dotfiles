@@ -36,6 +36,6 @@
 {
     "label" : "hyprland",
     "action" : "hyprctl reload",
-    "text" : "Hyprland",
+    "text" : "HyprReload",
     "keybind" : "r"
 }

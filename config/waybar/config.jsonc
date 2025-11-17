@@ -38,7 +38,6 @@
   "backlight": {
     "format": "　{percent}%",
     "format-icons": ["", ""],
-    "on-click": "$HOME/.config/hypr/scripts/cycle_wall.sh" 
   },
   "custom/media": {
     "format": "{}",
@@ -61,8 +60,8 @@
   },
 
   "clock": {
-    "format": "󰥔   {:%I:%M %p}",
-    "format-alt": "󰥔   {:%a, %d. %b  %I:%M %p}",
+    "format-alt": "󰥔   {:%I:%M %p}",
+    "format": "󰥔   {:%a, %d. %b  %I:%M %p}",
     "tooltip": true
   },
 
@@ -109,11 +108,13 @@
   "backlight": {
     "device": "intel_backlight",
     "format": "{icon}   {percent}%",
-    "format-icons": ["󰃞", "󰃟", "󰃠"]
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-click": "$HOME/.config/hypr/scripts/cycle_wall.sh" ,
   },
 
   "custom/weather": {
     "exec": "${HOME}/.config/waybar/scripts/get_weather.sh Ho_Chi_Minh",
+    "on-click": "${HOME}/.config/waybar/scripts/get_weather.sh Ho_Chi_Minh",
     "return-type": "json",
     "format": "{}",
     "tooltip": true,
