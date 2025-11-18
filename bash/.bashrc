@@ -100,6 +100,8 @@ alias open='xdg-open'
 alias yank='yank_func'
 alias tohere='tohere_func'
 alias dev='~/dotfiles/bash/scripts/dev.sh'
+alias fvim='vim $(fzf --height 40%)'
+alias refresh='source ~/.bashrc'
 
 cd_func() {
   builtin cd "$@" && ls 
@@ -211,3 +213,9 @@ if [ -f '/home/thkinh/repos/google-cloud-sdk/path.bash.inc' ]; then . '/home/thk
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/thkinh/repos/google-cloud-sdk/completion.bash.inc' ]; then . '/home/thkinh/repos/google-cloud-sdk/completion.bash.inc'; fi
+
+# Set up zoxide
+eval "$(zoxide init bash)"
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"

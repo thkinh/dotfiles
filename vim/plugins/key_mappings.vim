@@ -3,10 +3,10 @@ nnoremap <leader>e :Ex<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>1 :!<CR>
-nnoremap <leader><leader> :browse oldfiles <CR>
 nnoremap <Space> }
-nnoremap <CR> gf
+nnoremap <S-CR> gf
 nnoremap <BS> :e #<CR>
+nnoremap <leader><leader> :Files<CR>
 
 "INSERT MODE
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
