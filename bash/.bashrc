@@ -191,10 +191,6 @@ unset __conda_setup
 # <<< conda initialize <<<
 eval "$(direnv hook bash)"
 
-# ruby init
-# eval "$(rbenv init -)"
-
-
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba shell init' !!
 export MAMBA_EXE='/home/thkinh/miniforge3/bin/mamba';
