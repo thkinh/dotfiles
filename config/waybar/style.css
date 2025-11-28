@@ -3,7 +3,6 @@
 *{
     font-family: 'Radio Canada Big', sans-serif;
     font-weight: bold;
-    font-size: 14px;
     border-radius: 5px;
 }
 
@@ -35,6 +34,12 @@ window#waybar {
   margin-right: 5px
 }
 
+#custom-keyboard {
+    color: @color5; /* color5 */
+    background-color: @background; /* background */
+    margin: 0 5px 0 0px;
+    padding: 0 10px 0 10px; /* top, right, bottom, left */
+  }
 #battery,
 #pulseaudio,
 #backlight,

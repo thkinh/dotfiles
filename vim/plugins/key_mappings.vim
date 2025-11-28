@@ -4,7 +4,7 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>1 :!<CR>
 nnoremap <Space> }
-nnoremap <C-CR> gf
+nnoremap <leader><CR> gf
 nnoremap <BS> :e #<CR>
 nnoremap <leader><leader> :Files<CR>
 nnoremap <C-B> <ESC>:Lex<CR>:vertical resize 25<CR>

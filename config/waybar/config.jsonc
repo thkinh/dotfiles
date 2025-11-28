@@ -3,11 +3,20 @@
   "margin-top": 3,
   "modules-left": ["battery","cpu","temperature","memory", "network","tray"], 
   "modules-center": ["hyprland/workspaces", "custom/media"],
-  "modules-right": ["clock", "custom/weather", "pulseaudio", "backlight"],
+  "modules-right": ["clock", "custom/weather", "pulseaudio", "backlight", "custom/keyboard"],
   "tray": {
     "format": "{}",  // Font Awesome Bluetooth icon
     "icon-size": 20,
     "spacing": 10
+  },
+  "custom/keyboard": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/toggle_keyboard.sh check",
+    "on-click": "~/.config/waybar/scripts/toggle_keyboard.sh",
+    "return-type": "json",
+    "format-icons": ["", ""],
+    "tooltip": true,
+    "signal": 10
   },
   "custom/ibus": {
     "format": "{}",
@@ -30,7 +39,7 @@
     "format-icons": ["󱃃", "󰔏", "󱃂"]
   },
   "cpu": {
-    "format": " {usage}%"
+    "format": "<span font='20px'></span> {usage}%"
   },
   "memory": {
     "format": "   {}%"
@@ -61,13 +70,13 @@
 
   "clock": {
     "format-alt": "󰥔   {:%I:%M %p}",
-    "format": "󰥔   {:%a, %d. %b  %I:%M %p}",
+    "format": "<span font='18px'>󰥔</span> {:%a, %d. %b  %I:%M %p}",
     "tooltip": true
   },
 
   "pulseaudio": {
-    "format": "{icon}  {volume}%",
-    "format-bluetooth": "󰂱  {volume}%",
+    "format": "<span font='20px'>{icon}</span>  {volume}%",
+    "format-bluetooth": "<span font='20px'>󰂱</span>  {volume}%",
     "format-muted": "󰖁",
     "scroll-step": 1,
     "on-click": "pavucontrol",
@@ -86,7 +95,7 @@
   "network": {
     "interface": "wlan0",
     "format": "{ifname}",
-    "format-wifi": "{icon}   {essid}",
+    "format-wifi": "<span font='24px'>{icon}</span>   {essid}",
     "format-ethernet": "󰈀   {ipaddr}/{cidr}",
     "format-disconnected": "󰤭   disconnected",
     "max-length": 50,
@@ -107,7 +116,7 @@
 
   "backlight": {
     "device": "intel_backlight",
-    "format": "{icon}   {percent}%",
+    "format": "<span font='20px'>{icon}</span>   {percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
     "on-click": "$HOME/.config/hypr/scripts/cycle_wall.sh" ,
   },
