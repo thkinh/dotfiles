@@ -95,13 +95,42 @@ alias cls='clear'
 alias rmdir='rm -rf'
 alias cd='cd_func'
 alias rm='trash-put'
-alias translate='~/dotfiles/bash/scripts/wtf.sh'
 alias open='xdg-open'
+alias newest='newest_func'
 alias yank='yank_func'
+alias yank-list='yanklist_func'
 alias tohere='tohere_func'
 alias dev='~/dotfiles/bash/scripts/dev.sh'
 alias fvim='vim $(fzf --height 40%)'
+alias fvi='vim $(fzf --height 40%)'
 alias refresh='source ~/.bashrc'
+alias fr='~/dotfiles/bash/scripts/fr.sh'
+alias translate='~/dotfiles/bash/scripts/wtf.sh'
+
+open_func() {
+    if [ "$1" = "newest" ]; then
+        index="${2:-1}"
+        target=$(command ls -tA1 --file-type | grep -v '/$' | sed -n "${index}p")
+
+        if [ -z "$target" ]; then
+            echo "No file at index $index"
+            return 1
+        fi
+
+        xdg-open "$target"
+        return 0
+    fi
+
+    xdg-open "$@"
+}
+
+newest_func() {
+    index=1
+    if [[ "$1" =~ ^[+-]?[0-9]+$ ]]; then
+        index=$1
+    fi
+    command ls -tA1 --file-type | grep -v '/$' | sed -n "${index}p"
+}
 
 cd_func() {
   builtin cd "$@" && ls 
@@ -117,13 +146,20 @@ yank_func() {
     done
 }
 
+yanklist_func() {
+    if [ "$1" = "clean" ]; then
+        rm ~/.cache/self_created/yanked_files/*
+        echo "Cleaned"
+    fi
+    ls ~/.cache/self_created/yanked_files
+}
+
 tohere_func() {
     for file in ~/.cache/self_created/yanked_files/*; do
         mv "$file" .
         echo "Moved $file to $(pwd)"
     done
 }
-
 
 # Check for the distribution and set aliases accordingly
 if [ -f /etc/os-release ]; then

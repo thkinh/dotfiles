@@ -75,7 +75,7 @@
   },
 
   "pulseaudio": {
-    "format": "<span font='20px'>{icon}</span>  {volume}%",
+    "format": " <span font='20px'>{icon}</span>{volume}%",
     "format-bluetooth": "<span font='20px'>󰂱</span>  {volume}%",
     "format-muted": "󰖁",
     "scroll-step": 1,
@@ -116,7 +116,7 @@
 
   "backlight": {
     "device": "intel_backlight",
-    "format": "<span font='20px'>{icon}</span>   {percent}%",
+    "format": "<span font='20px'>{icon}</span>{percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
     "on-click": "$HOME/.config/hypr/scripts/cycle_wall.sh" ,
   },
