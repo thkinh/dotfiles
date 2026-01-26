@@ -59,6 +59,8 @@ autocmd VimEnter * set vb t_vb=
 
 "Copilot enable
 let g:copilot_enabled = 0
+let g:netrw_preview = 1
+let g:netrw_liststyle=3
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *

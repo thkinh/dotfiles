@@ -11,7 +11,6 @@ fi
 MAIN_DIR="$HOME/.config"
 
 CONFIG_DIRS=(
-  "cava"
   "dunst"
   "fastfetch"
   "kitty"
@@ -21,7 +20,7 @@ CONFIG_DIRS=(
   "wofi"
   "wlogout"
   "nwg-look"
-  "ibus-bamboo"
+  "mouseless"
 )
 
 #mimeapp.list

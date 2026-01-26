@@ -8,6 +8,7 @@ nnoremap <leader><CR> gf
 nnoremap <BS> :e #<CR>
 nnoremap <leader><leader> :Files<CR>
 nnoremap <C-B> <ESC>:Lex<CR>:vertical resize 25<CR>
+nnoremap <leader>2 :terminal<CR><C-W>:wincmd J<CR><C-W>:horizontal resize 10<CR>
 
 
 "INSERT MODE

@@ -22,19 +22,20 @@ NEXT_INDEX=$(( (CURRENT_INDEX + 1) % ${#WALLS[@]} ))
 
 # Set wallpaper using hyprctl
 # Check if file exists
+echo "next wallpaper: ${WALLS[$NEXT_INDEX]}"
 if [ ! -f "${WALLS[$NEXT_INDEX]}" ]; then
     echo " Error: Wallpaper file not found: ${WALLS[$NEXT_INDEX]}"
     notify-send " Error: Wallpaper file not found: ${WALLS[$NEXT_INDEX]}"
     exit 1
 fi
 # Apply wallpaper
-wal --cols16 -i "${WALLS[$NEXT_INDEX]}"
-hyprctl hyprpaper wallpaper ",${WALLS[$NEXT_INDEX]}"  
+echo $(hyprctl hyprpaper wallpaper "eDP-1,${WALLS[$NEXT_INDEX]}")
+# wal --cols16 -i "${WALLS[$NEXT_INDEX]}"
 # Apply wal
-#if ! wal --cols16 -i "${WALLS[$NEXT_INDEX]}"; then
-#    echo "Error: wal failed to apply colors."
-#    exit 1
-#fi
+if ! wal --cols16 -i "${WALLS[$NEXT_INDEX]}"; then
+    notify-send "Error: wal failed to apply colors."
+    exit 1
+fi
 
 # Save the current wallpaper path
 echo "${WALLS[$NEXT_INDEX]}" > $HOME/.cache/self_created/current_wall
