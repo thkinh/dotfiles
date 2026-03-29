@@ -7,6 +7,7 @@ esac
 source ~/dotfiles/bash/git-prompt.sh
 
 
+
 ####### HISTORY CONFIGURATION
 # Don't put duplicate lines or lines starting with space in the history
 HISTCONTROL=ignoreboth
@@ -174,6 +175,7 @@ fi
 
 ####### PATHS & SDKS
 export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:/usr/lib/emscripten #EMCC, EMCMAKE
 
 # Google Cloud SDK
 if [ -f '/home/thkinh/repos/google-cloud-sdk/path.bash.inc' ]; then . '/home/thkinh/repos/google-cloud-sdk/path.bash.inc'; fi
