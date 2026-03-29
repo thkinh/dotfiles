@@ -5,7 +5,9 @@ syntax on
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'vimwiki/vimwiki'
+Plug 'img-paste-devs/img-paste.vim' "image in markdown files
 Plug 'sheerun/vim-polyglot'
+Plug 'godlygeek/tabular'
 
 "LSP stuffs
 Plug 'prabirshrestha/vim-lsp'
@@ -49,7 +51,7 @@ source ~/.vim/plugins/general_settings.vim
 source ~/.vim/plugins/key_mappings.vim
 " =========================
 
-" VimWiki configs
+" VimWiki / Markdown configs
 source ~/.vim/plugins/vimwiki_config.vim
 " =========================
 
