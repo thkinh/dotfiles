@@ -112,7 +112,7 @@ window#waybar {
   background-color: @background;
   padding: 0 5px 0 5px; /* top, right, bottom, left */
   margin: 0 2px 0 2px;
-  font-size: 18px;
+  font-size: 10px;
 }
 #memory {
   font-size: 25px;
@@ -131,7 +131,9 @@ window#waybar {
   color: @color4; /* color2 */
   background-color: @background; /* background */
   margin: 0 0px 0 5px;
-  padding: 0 15px 0 15px; /* top, right, bottom, left */
+  padding: 0 7px 0 7px; /* top, right, bottom, left */
+  font-size: 12px;
+  min-width: 100px;
 }
 #tray {
   color: @color4; /* color2 */

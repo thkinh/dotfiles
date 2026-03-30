@@ -2,7 +2,7 @@
   "position": "top",
   "margin-top": 3,
   "reload_style_on_change": true,
-  "modules-left": ["upower","cpu","temperature","memory", "network","tray"], 
+  "modules-left": ["upower","temperature","memory", "cpu", "network","tray"], 
   "modules-center": ["hyprland/workspaces", "custom/media"],
   "modules-right": ["clock", "custom/weather", "pulseaudio", "backlight"],
   "tray": {
@@ -23,10 +23,22 @@
     "format-icons": ["󱃃", "󰔏", "󱃂"]
   },
   "cpu": {
-    "format": "{icon}{usage}%",
-    "format-icons": ["󰝦","󰪞","󰪟","󰪠","󰪡","󰪢","󰪣","󰪤","󰪥"],
+    "interval": 1,
+    "format": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}",
+    "format-alt": "<span font='15px'>{icon} {usage}% </span>",
+    "format-icons": [
+      "<span color='#69ff94'>▁</span>", // green
+      "<span color='#2aa9ff'>▂</span>", // blue
+      "<span color='#f8f8f2'>▃</span>", // white
+      "<span color='#f8f8f2'>▄</span>", // white
+      "<span color='#ffffa5'>▅</span>", // yellow
+      "<span color='#ffffa5'>▆</span>", // yellow
+      "<span color='#ff9977'>▇</span>", // orange
+      "<span color='#dd532e'>█</span>"  // red
+    ]
   },
   "memory": {
+    "interval": 2,
     "rotate": 270,
     "format": "{icon}",
     "format-icons": ["󰝦","󰪞","󰪟","󰪠","󰪡","󰪢","󰪣","󰪤","󰪥"],
@@ -66,7 +78,6 @@
     "format": "󰥔 {:%a, %d. %b  %I:%M %p}",
     "tooltip": true
   },
-
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": "󰂱 {volume}%",
