@@ -1,0 +1,40 @@
+window {
+    margin: 0px;
+    border: 2px solid #444;
+    background-color: #1e1e1e;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 13px;
+}
+
+#input {
+    margin: 5px;
+    border: none;
+    color: #fff;
+    background-color: #333;
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: transparent;
+}
+
+#entry:selected {
+    background-color: #444;
+    outline: none;
+}
+
+#text {
+    margin: 5px;
+    color: #ddd;
+}
+
+#text:selected {
+    color: #fff;
+}

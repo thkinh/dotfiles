@@ -70,7 +70,7 @@ window#waybar {
   padding: 0 5px 0 5px
 }
 #network {
-  color: @color2; /* color2 */
+  color: @color4; /* color4 */
   background-color: @background; /* background */
   margin: 0 5px 0 0px;
   padding: 0 15px 0 15px; /* top, right, bottom, left */
@@ -81,10 +81,6 @@ window#waybar {
   background-color: @background; /* background */
   margin: 0 5px 0 0;
   padding: 0 10px 0 10px;
-}
-
-#network {
-  color: @color4; /* color4 */
 }
 
 #pulseaudio {

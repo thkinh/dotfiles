@@ -1,5 +1,5 @@
 [Default Applications]
-inode/directory=thunar.desktop;
+inode/directory=thunar.desktop
 x-directory/normal=thunar.desktop;
 application/pdf=org.pwmt.zathura.desktop;
 application/pptx=org.pwmt.zathura.desktop;

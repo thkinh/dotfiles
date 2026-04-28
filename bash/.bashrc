@@ -57,6 +57,8 @@ alias fvi='vim $(fzf --height 40%)'
 alias refresh='source ~/.bashrc'
 alias fr='~/dotfiles/bash/scripts/fr.sh'
 alias translate='~/dotfiles/bash/scripts/wtf.sh'
+alias md4browser='python3 ~/dotfiles/bash/scripts/md4browser.py'
+alias fuckyou='xdg-open ~/Pictures/_Collections/Memes/torvaldsnvidia.jpg'
 
 
 ####### CUSTOM FUNCTIONS
@@ -115,12 +117,17 @@ mann_func() {
     man "$@" | col -bx | bat --style plain -l man -p
 }
 
+dib_func() {
+    diff -u "$@" | col -bx | bat --style=plain -l diff
+}
+
 man_vim_func() {
     man "$@" | col -bx | vim -R -c 'set ft=man' -
 }
 
 # Mapping functions to aliases
 alias mann='mann_func'
+alias dib='dib_func'
 alias manv='man_vim_func'
 alias newest='newest_func'
 alias yank='yank_func'

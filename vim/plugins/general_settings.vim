@@ -35,6 +35,9 @@ set showcmd
 " Show the mode you are on the last line.
 set showmode
 
+" disable code injection risk
+set nomodeline
+
 " Show matching words during a search.
 set showmatch
 

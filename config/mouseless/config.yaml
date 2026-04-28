@@ -4,7 +4,8 @@
 devices:
 - "Genius Wireless Dongle Keyboard"
 - "AT Translated Set 2 keyboard"
-- "/dev/input/event4"
+- "SEMICO   USB Gaming Keyboard "
+- "/dev/input/event5" # hyperwork keyboard
 
 # one can also exclude specific devices with this option
 devicesExclude:

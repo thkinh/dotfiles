@@ -1,0 +1,19 @@
+mode=dmenu
+layer=top
+allow_images=true
+no_actions=true
+hide_scroll=true
+
+# Dimensions
+width=25%
+height=40%
+
+# Positioning (3 = Top Right)
+location=3
+xoffset=-30
+yoffset=20
+
+# Alignment
+halign=fill
+content_halign=fill
+filter_rate=100

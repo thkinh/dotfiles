@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,600;1,7..72,300&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ── */
+:root {
+  --bg:        #0f1117;
+  --bg-card:   #161b27;
+  --bg-toc:    #111520;
+  --border:    #1e2535;
+  --accent:    #5b8dee;
+  --accent2:   #a78bfa;
+  --text:      #cdd6f4;
+  --text-dim:  #6e7a9a;
+  --text-head: #e2e8f8;
+  --toc-w:     260px;
+  --content-max: 780px;
+  --radius:    10px;
+  --mono:      'JetBrains Mono', monospace;
+  --serif:     'Literata', Georgia, serif;
+  --sans:      'DM Sans', sans-serif;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.85;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── TOC Sidebar ── */
+#TOC {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--toc-w);
+  height: 100vh;
+  background: var(--bg-toc);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 2.5rem 1.25rem 2rem;
+  z-index: 100;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+#TOC::before {
+  content: "Contents";
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+#TOC ul {
+  list-style: none;
+  padding: 0;
+}
+
+#TOC ul ul {
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--border);
+  margin: 0.2rem 0 0.2rem 0.4rem;
+}
+
+#TOC li { margin: 0; }
+
+#TOC a {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  transition: color 0.15s, background 0.15s;
+  line-height: 1.4;
+}
+
+#TOC a:hover {
+  color: var(--accent);
+  background: rgba(91, 141, 238, 0.08);
+}
+
+#TOC > ul > li > a {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ── Main Content ── */
+body > *:not(#TOC) { margin-left: var(--toc-w); }
+
+#content, .main-content, body > div:not(#TOC), body > article {
+  max-width: var(--content-max);
+  margin-left: calc(var(--toc-w) + 4rem);
+  margin-right: auto;
+  padding: 4rem 1.5rem 6rem;
+  width: 100%;
+}
+
+/* ── Headings ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sans);
+  color: var(--text-head);
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin: 0 0 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  color: #fff;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin: 3rem 0 1rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--accent);
+  color: var(--text-head);
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin: 2.2rem 0 0.7rem;
+  color: var(--accent2);
+}
+
+h4, h5, h6 {
+  font-size: 0.95rem;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── Paragraphs & Spacing ── */
+p { margin-bottom: 1.2rem; }
+
+/* ── Links ── */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+a:hover { border-bottom-color: var(--accent); }
+
+/* ── Code ── */
+code, kbd {
+  font-family: var(--mono);
+  font-size: 0.83em;
+  background: rgba(91, 141, 238, 0.1);
+  color: #93c5fd;
+  padding: 0.15em 0.45em;
+  border-radius: 4px;
+  border: 1px solid rgba(91, 141, 238, 0.18);
+}
+
+pre {
+  background: #0a0d14;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #b8c9e8;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+/* ── Blockquote ── */
+blockquote {
+  margin: 1.8rem 0;
+  padding: 1rem 1.4rem;
+  background: var(--bg-card);
+  border-left: 3px solid var(--accent2);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+blockquote p { margin: 0; }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.8rem 0;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--bg-card);
+  color: var(--text-head);
+  font-weight: 500;
+  text-align: left;
+  padding: 0.7rem 1rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* ── Lists ── */
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+li { margin-bottom: 0.35rem; }
+
+ul li::marker { color: var(--accent); }
+ol li::marker { color: var(--text-dim); font-family: var(--mono); font-size: 0.85em; }
+
+/* ── Horizontal Rule ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* ── Math ── */
+.math { color: #f0abfc; }
+.math.display {
+  overflow-x: auto;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+/* ── Images ── */
+img {
+  max-width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: block;
+  margin: 1.5rem auto;
+}
+
+/* ── Selection ── */
+::selection { background: rgba(91, 141, 238, 0.3); color: #fff; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  :root { --toc-w: 0px; }
+
+  #TOC {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 1.25rem;
+  }
+
+  #content, body > div:not(#TOC), body > article {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    padding: 2rem 0;
+  }
+}
