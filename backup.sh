@@ -21,6 +21,8 @@ CONFIG_DIRS=(
   "wlogout"
   "nwg-look"
   "mouseless"
+  "fd"
+  "snappy-switcher"
 )
 
 #mimeapp.list
