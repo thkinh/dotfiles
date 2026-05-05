@@ -157,13 +157,14 @@ RED='\[\e[0;31m\]'
 YELLOW='\[\e[0;33m\]'
 CYAN='\[\e[0;36m\]'
 GRAY='\[\e[0;90m\]'
+BLUE='\[\e[1;34m\]'
 RESET='\[\e[0m\]'
 
 conda_prompt() {
     [[ -n "$CONDA_DEFAULT_ENV" ]] && printf "(%s)" "$CONDA_DEFAULT_ENV"
 }
 
-PS1="${CYAN}┌-${RESET}\$(conda_prompt) ${RED}[ \t ]${GREEN}[ \u${YELLOW}@${GREEN}\h ]${YELLOW}\$(__git_ps1 '(%s)') ${CYAN}\w\n${CYAN}└─▶${RESET} "
+PS1="${CYAN}┌-${RESET}\$(conda_prompt) ${RED}[ \t ]${GREEN}[ \u${YELLOW}@${GREEN}\h ]${YELLOW}\$(__git_ps1 '(%s)') ${CYAN}\W\n${CYAN}└─▶${RESET} "
 
 
 ####### EXTERNAL COMPLETIONS & ALIASES
