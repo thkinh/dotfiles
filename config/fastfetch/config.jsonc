@@ -78,11 +78,6 @@
             "keyColor": "blue"
         },
         {
-            "type": "wmtheme",
-            "key": "│ 󰉦 ",
-            "keyColor": "blue"
-        },
-        {
             "type": "terminal",
             "key": "├ 󰆍 ",
             "keyColor": "blue"
@@ -104,9 +99,10 @@
             "keyColor": "magenta"
         },
         {
-            "type": "processes",
+            "type": "command",
             "key": "│ 󰪵  Running ",
-            "format": "{} (processes)",
+            "text": "t=$(unset LIBPROC_HIDE_KERNEL; ps -e | wc -l); u=$(LIBPROC_HIDE_KERNEL=1 ps -e | wc -l); echo \"$u/$t\"",
+            "format": "{} processes (user/total)",
             "keyColor": "magenta"
         },
         {
