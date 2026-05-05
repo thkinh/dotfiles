@@ -1,5 +1,7 @@
 #!/bin/bash
 
+fc-list > ./fonts
+
 # Define the input file
 INPUT_FILE="fonts"
 
