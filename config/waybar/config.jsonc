@@ -85,9 +85,10 @@
   },
 
   "clock": {
-    "format-alt": "󰥔 {:%I:%M %p}",
-    "format": "󰥔 {:%a, %d. %b  %I:%M %p}",
-    "tooltip": true
+    "format": "󰥔 {:%I:%M %p}",
+    "format-alt": "󰥔 {:%a, %d. %b %I:%M %p}",
+    "tooltip": true,
+    "tooltip-format": "{:%Y-%m-%d}",
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
